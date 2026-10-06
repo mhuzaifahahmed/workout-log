@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta name="theme-color" content="#0e0f12" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Workout Log</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <h1 class="topbar__title">Workout Log</h1>
+    <span id="syncDot" class="sync-dot" data-status="idle" title="Sync status"></span>
+  </header>
+
+  <main id="views">
+
+    <!-- LOG VIEW -->
+    <section id="logView" class="view" data-view="log">
+
+      <div class="selector-row">
+        <div class="field">
+          <label for="daySelect">Day</label>
+          <select id="daySelect"></select>
+        </div>
+        <div class="field">
+          <label for="dateInput">Date</label>
+          <div class="date-wrap">
+            <input id="dateInput" type="date" />
+            <span id="dateDisplay" class="date-display"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="dayNote" class="day-note"></div>
+
+      <form id="logForm">
+        <div id="exerciseList" class="exercise-list"></div>
+        <button type="submit" id="saveBtn" class="save-btn">Save Session</button>
+      </form>
+
+    </section>
+
+    <!-- HISTORY VIEW -->
+    <section id="historyView" class="view view--hidden" data-view="history">
+
+      <div class="history-tabs">
+        <button class="history-tab is-active" data-mode="date">By Date</button>
+        <button class="history-tab" data-mode="exercise">By Exercise</button>
+      </div>
+
+      <div id="historyByDate" class="history-panel">
+        <div id="sessionList" class="session-list"></div>
+      </div>
+
+      <div id="historyByExercise" class="history-panel history-panel--hidden">
+        <div class="field">
+          <label for="exerciseSelect">Exercise</label>
+          <select id="exerciseSelect"></select>
+        </div>
+        <canvas id="progressChart" width="600" height="220"></canvas>
+        <div id="exerciseHistoryList" class="exercise-history-list"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <nav class="tabbar">
+    <button class="tabbar__btn is-active" data-nav="log">
+      <span class="tabbar__icon">●</span>
+      <span>Log</span>
+    </button>
+    <button class="tabbar__btn" data-nav="history">
+      <span class="tabbar__icon">▤</span>
+      <span>History</span>
+    </button>
+  </nav>
+
+  <div id="toast" class="toast"></div>
+
+</div>
+
+<script src="lib/gsap.min.js"></script>
+<script src="lib/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="js/plan.js"></script>
+<script src="js/store.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
